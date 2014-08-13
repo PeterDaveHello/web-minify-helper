@@ -25,7 +25,7 @@ do
         for filename in `ls $dir/*.$filetype 2> /dev/null | sed "s/\.$filetype//g" | grep -v .min$`
         do
             do_min=0
-            #echek if exist a minified version
+            #check if exist a minified version
             if [ -f $filename\.min\.$filetype ]; then
                 #already exist a minified version, compare the modify time to decide compressing or not
                 orig_ver_time=`eval $LS $filename\.$filetype | awk '{print $6}'`
@@ -39,6 +39,13 @@ do
             if [ 0 -lt $do_min ]; then
                 echo "Compressing $filename.$filetype ..."
                 curl -X POST -s --data-urlencode "input@$filename.$filetype" ${urls[$filetype]} > $filename\.min.$filetype
+                orig_ver_size=`eval $LS $filename\.$filetype | awk '{print $5}'`
+                mini_ver_size=`eval $LS $filename\.min\.$filetype | awk '{print $5}'`
+                if [ $mini_ver_size -gt $orig_ver_size ]; then
+                    echo "$filename.min.$filetype is bigger than original!"
+                elif [ $mini_ver_size -eq 0 ]; then
+                    echo "$filename.min.$filetype is empty!"
+                fi
             fi
         done
     done
