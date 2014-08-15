@@ -45,6 +45,13 @@ do
                 if [ $mini_ver_size -gt $orig_ver_size ]; then
                     echo ": The file $filename.min.$filetype is bigger than the original file."
                 fi
+                #if there are some error in original file, compressed file would contain error message.
+                if [ $mini_ver_size -lt 100 ]; then
+                    match_message=`sed -n '1p' $filename\.min\.$filetype | grep -E "Error:|There is an error" >>/dev/null ; echo $?`
+                    if [ $match_message -eq 0 ]; then
+                        echo ": Could not compress properly, please check the original file."
+                    fi
+                fi
             fi
         done
     done
