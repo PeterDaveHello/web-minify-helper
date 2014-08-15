@@ -39,6 +39,12 @@ do
             if [ 0 -lt $do_min ]; then
                 echo "Compressing $filename.$filetype ..."
                 curl -X POST -s --data-urlencode "input@$filename.$filetype" ${urls[$filetype]} > $filename\.min.$filetype
+                #check whether compressed file is bigger than original or not
+                orig_ver_size=`eval $LS $filename\.$filetype | awk '{print $5}'`
+                mini_ver_size=`eval $LS $filename\.min\.$filetype | awk '{print $5}'`
+                if [ $mini_ver_size -gt $orig_ver_size ]; then
+                    echo ": The file $filename.min.$filetype is bigger than the original file."
+                fi
             fi
         done
     done
