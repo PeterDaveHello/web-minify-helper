@@ -1,6 +1,8 @@
 Web minify helper!
 ========
 
+[![Gitter chat](https://badges.gitter.im/PeterDaveHello/web-minify-helper.png)](https://gitter.im/PeterDaveHello/web-minify-helper)
+
 Let me help to minify the css and js files automatically and easily!
 
 This is only a shell script, depends on curl and bash shell,
