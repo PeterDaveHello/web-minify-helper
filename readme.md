@@ -1,7 +1,7 @@
 Web minify helper!
 ========
 
-[![Gitter chat](https://badges.gitter.im/PeterDaveHello/web-minify-helper.png)](https://gitter.im/PeterDaveHello/web-minify-helper)
+[![Gitter chat](https://badges.gitter.im/PeterDaveHello/web-minify-helper.svg)](https://gitter.im/PeterDaveHello/web-minify-helper)
 
 Let me help to minify the css and js files automatically and easily!
 
