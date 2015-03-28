@@ -34,7 +34,7 @@ Git method is recommended, because it's easy to update and no file permission is
 if you downloaded the shell script by your self, please give it a executable permission by:
 `chmod +x minify.sh`
 
-And go to the directory you want to minify, run the script(`path_of_script/minify.sh`)!
+You go to the target directory you want to minify, run the script(`path_of_script/minify.sh`), or pass the directory's path as a parameter to the script!
 
 You can even put the file or make link under `$HOME/bin`, then you can run this script everywhere easily!
 

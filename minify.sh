@@ -9,12 +9,18 @@ else
     LS='ls -l --time-style +%Y%m%d%H%M%S'
 fi
 
+if [ -z "$1" ]; then
+    TARGET='.'
+else
+    TARGET=$1
+fi
+
 types=(js css)
 
 echo "Scaning direcotry..."
 
 #list all the directories except git directory
-for dir in `find . -type d | grep -v \/\.git\/`
+for dir in `find $TARGET -type d | grep -v \/\.git\/`
 do
     for filetype in "${types[@]}"
     do
