@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #ls time format depends on OS
 if [ "FreeBSD" = `uname` ] || [ "Darwin"  = `uname` ]; then
