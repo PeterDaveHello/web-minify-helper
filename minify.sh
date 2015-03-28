@@ -30,9 +30,9 @@ do
                 #already exist a minified version, compare the modify time to decide compressing or not
                 orig_ver_time=`eval $LS $filename\.$filetype | awk '{print $6}'`
                 mini_ver_time=`eval $LS $filename\.min\.$filetype | awk '{print $6}'`
-            if [ $mini_ver_time -lt $orig_ver_time ]; then
-                do_min=1
-            fi
+                if [ $mini_ver_time -lt $orig_ver_time ]; then
+                    do_min=1
+                fi
             else
                 do_min=1
             fi
