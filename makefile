@@ -1,8 +1,11 @@
 YUICOMPERSSOR_VERSION = 2.4.8
 
-.PHONY : all
+.PHONY : all test
 
-all: yuicompressor.jar
+test:
+	@bash -n minify.sh
+
+all: test yuicompressor.jar
 
 yuicompressor.jar: yuicompressor-$(YUICOMPERSSOR_VERSION).jar
 	@ln -f -s yuicompressor-$(YUICOMPERSSOR_VERSION).jar yuicompressor.jar
