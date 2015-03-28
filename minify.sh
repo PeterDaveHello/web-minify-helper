@@ -22,6 +22,11 @@ echo "Scaning direcotry..."
 #list all the directories except git directory
 for dir in `find $TARGET -type d | grep -v \/\.git\/`
 do
+    if [ ! -w $dir ]; then
+        echo "$dir is not writable, ignore it."
+        continue
+    fi
+
     for filetype in "${types[@]}"
     do
         echo "Finding $filetype to be compressed under $dir ..."
