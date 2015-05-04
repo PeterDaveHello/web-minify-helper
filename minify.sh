@@ -16,6 +16,10 @@ else
 fi
 
 types=(js css)
+#For storing the URL of API to minify the files
+declare -A urls
+urls[js]="http://javascript-minifier.com/raw"
+urls[css]="http://cssminifier.com/raw"
 
 echo "Scaning direcotry..."
 
@@ -47,7 +51,9 @@ do
             fi
             if [ 0 -lt $do_min ]; then
                 echo "Compressing $filename.$filetype ..."
-                java -jar $MYPATH/yuicompressor.jar $filename.$filetype -o $filename\.min.$filetype
+                java -jar $MYPATH/yuicompressor.jar $filename.$filetype -o $filename\.min.$filetype ||
+                  echo "yuicompressor failed, try javascript-/cssminifier.com" &&
+                    curl -X POST -s --data-urlencode "input@$filename.$filetype" ${urls[$filetype]} > $filename\.min.$filetype
             fi
         done
     done
