@@ -5,9 +5,9 @@ Web minify helper!
 
 Let me help to minify the css and js files automatically and easily!
 
-This is only a shell script, depends on bash shell,
+This is only a shell script, depends on bash shell, curl and java
 
-and it's based on [YUI Compressor](https://github.com/yui/yuicompressor),
+it's based on [YUI Compressor](https://github.com/yui/yuicompressor) and [javascript-minifier.com](http://javascript-minifier.com)/[cssminifier.com](http://cssminifier.com),,
 
 you can contribute on YUI Compressor on its project page if you want!
 
@@ -15,6 +15,7 @@ Requirement
 ========
 - wget (to fetch YUI Compressor)
 - Bash shell(version > 4.0)
+- Curl (version > 7.0)
 - JAVA (JRE) (YUI Compressor needs it) (version >= 1.5)
 
 How to use?
