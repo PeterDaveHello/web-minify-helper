@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
-
 MYPATH=`dirname "$0"`
-
 #ls time format depends on OS
 if [ "FreeBSD" = `uname` ] || [ "Darwin"  = `uname` ]; then
     LS='ls -l -D %Y%m%d%H%M%S'
@@ -51,9 +49,11 @@ do
             fi
             if [ 0 -lt $do_min ]; then
                 echo "Compressing $filename.$filetype ..."
-                java -jar $MYPATH/yuicompressor.jar $filename.$filetype -o $filename\.min.$filetype ||
-                  echo "yuicompressor failed, try javascript-/cssminifier.com" &&
+                java -jar $MYPATH/yuicompressor.jar $filename.$filetype -o $filename\.min.$filetype
+                if [ ! $? -eq 0 ]; then
+                    echo "yuicompressor failed, try javascript-/cssminifier.com"
                     curl -X POST -s --data-urlencode "input@$filename.$filetype" ${urls[$filetype]} > $filename\.min.$filetype
+                fi
             fi
         done
     done
