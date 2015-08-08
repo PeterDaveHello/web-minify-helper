@@ -8,7 +8,7 @@ test:
 	@bash -n minify.sh
 
 submodule:
-	git submodule update --init
+	@git submodule update --init
 
 yuicompressor.jar: yuicompressor-$(YUICOMPERSSOR_VERSION).jar
 	@ln -f -s yuicompressor-$(YUICOMPERSSOR_VERSION).jar yuicompressor.jar
