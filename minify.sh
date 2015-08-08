@@ -28,7 +28,7 @@ echo.BoldCyan "Scaning direcotry..."
 for dir in `find $TARGET -type d | grep -v \/\.git\/`
 do
     if [ ! -w $dir ]; then
-        echo.Red "$dir is not writable, ignore it."
+        echo.BoldRed "$dir is not writable, ignore it."
         continue
     fi
 
