@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 MYPATH=`dirname "$0"`
+
+. $MYPATH/ColorEchoForShell/dist/ColorEcho.bash
+
 #ls time format depends on OS
 if [ "FreeBSD" = `uname` ] || [ "Darwin"  = `uname` ]; then
     LS='ls -l -D %Y%m%d%H%M%S'
@@ -19,19 +22,19 @@ declare -A urls
 urls[js]="http://javascript-minifier.com/raw"
 urls[css]="http://cssminifier.com/raw"
 
-echo "Scaning direcotry..."
+echo.BoldCyan "Scaning direcotry..."
 
 #list all the directories except git directory
 for dir in `find $TARGET -type d | grep -v \/\.git\/`
 do
     if [ ! -w $dir ]; then
-        echo "$dir is not writable, ignore it."
+        echo.Red "$dir is not writable, ignore it."
         continue
     fi
 
     for filetype in "${types[@]}"
     do
-        echo "Finding $filetype to be compressed under $dir ..."
+        echo.Green "Finding $filetype to be compressed under $dir ..."
         #list js/css files exclude already minified files
         for filename in `ls $dir/*.$filetype 2> /dev/null | sed "s/\.$filetype$//g" | grep -v .min$`
         do
@@ -48,10 +51,10 @@ do
                 do_min=1
             fi
             if [ 0 -lt $do_min ]; then
-                echo "Compressing $filename.$filetype ..."
+                echo.Magenta "Compressing $filename.$filetype ..."
                 java -jar $MYPATH/yuicompressor.jar $filename.$filetype -o $filename\.min.$filetype
                 if [ ! $? -eq 0 ]; then
-                    echo "yuicompressor failed, try javascript-/cssminifier.com"
+                    echo.Red "yuicompressor failed, try javascript-/cssminifier.com"
                     curl -X POST -s --data-urlencode "input@$filename.$filetype" ${urls[$filetype]} > $filename\.min.$filetype
                 fi
             fi
@@ -59,4 +62,4 @@ do
     done
 done
 
-echo "All done!"
+echo.BoldGreen "All done!"
