@@ -1,11 +1,14 @@
 YUICOMPERSSOR_VERSION = 2.4.8
 
-.PHONY : all test
+.PHONY : all test submodule
 
 test:
 	@bash -n minify.sh
 
-all: test yuicompressor.jar
+all: test yuicompressor.jar submodule
+
+submodule:
+	git submodule update --init
 
 yuicompressor.jar: yuicompressor-$(YUICOMPERSSOR_VERSION).jar
 	@ln -f -s yuicompressor-$(YUICOMPERSSOR_VERSION).jar yuicompressor.jar
