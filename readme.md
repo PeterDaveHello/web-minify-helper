@@ -20,14 +20,10 @@ Requirement
 
 How to use?
 ========
-Use git or curl, wget to get the script:
+Use git to clone the repo or use curl, wget to get the zip archive:
 
 E.G.
-
-`curl -kO https://raw.githubusercontent.com/PeterDaveHello/web-minify-helper/master/minify.sh` 
-
-`wget  https://raw.githubusercontent.com/PeterDaveHello/web-minify-helper/master/minify.sh` 
-
+`wget https://github.com/PeterDaveHello/web-minify-helper/archive/master.zip`,
 `git clone https://github.com/PeterDaveHello/web-minify-helper.git`
 
 Git method is recommended, because it's easy to update and no file permission issue,
