@@ -1,0 +1,19 @@
+{
+  "name": "web-minify-helper",
+  "version": "0.0.1",
+  "description": "Help minify web assets",
+  "dependencies": {
+    "clean-css": "^3.4.10",
+    "uglify-js": "^2.6.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PeterDaveHello/web-minify-helper.git"
+  },
+  "keywords": [
+    "web",
+    "minify"
+  ],
+  "author": "Peter Dave Hello",
+  "license": "GPL-2.0"
+}

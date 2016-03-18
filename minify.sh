@@ -52,7 +52,11 @@ do
             fi
             if [ 0 -lt $do_min ]; then
                 echo.Magenta "Compressing $filename.$filetype ..."
-                java -jar $MYPATH/yuicompressor.jar $filename.$filetype -o $filename\.min.$filetype
+                if [ "$filetype" = "css" ]; then
+                    $MYPATH/node_modules/clean-css/bin/cleancss --compatibility --source-map --s0 -o $filename\.min.$filetype $filename.$filetype
+                else
+                    $MYPATH/node_modules/uglify-js/bin/uglifyjs --mangle --compress if_return=true --source-map $filename\.min.$filetype\.map -o $filename\.min.$filetype $filename.$filetype
+                fi
                 if [ ! $? -eq 0 ]; then
                     echo.Red "yuicompressor failed, try javascript-/cssminifier.com"
                     curl -X POST -s --data-urlencode "input@$filename.$filetype" ${urls[$filetype]} > $filename\.min.$filetype
