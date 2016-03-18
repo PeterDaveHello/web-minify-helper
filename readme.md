@@ -19,16 +19,11 @@ Requirement
 
 How to use?
 ========
-Use git to clone the repo or use curl, wget to get the zip archive:
 
-E.G.
-`wget https://github.com/PeterDaveHello/web-minify-helper/archive/master.zip`,
-`git clone https://github.com/PeterDaveHello/web-minify-helper.git`
-
-Git method is recommended, because it's easy to update and no file permission issue,
-
-if you downloaded the shell script by your self, please give it a executable permission by:
-`chmod +x minify.sh`
+```sh
+$ git clone https://github.com/PeterDaveHello/web-minify-helper.git
+$ cd web-minify-helper && npm install
+```
 
 You go to the target directory you want to minify, run the script(`path_of_script/minify.sh`), or pass the directory's path as a parameter to the script!
 
