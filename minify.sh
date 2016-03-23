@@ -58,7 +58,7 @@ do
                     $MYPATH/node_modules/uglify-js/bin/uglifyjs --mangle --compress if_return=true --source-map $filename\.min.$filetype\.map -o $filename\.min.$filetype $filename.$filetype
                 fi
                 if [ ! $? -eq 0 ]; then
-                    echo.Red "local compressor failed, try javascript-/cssminifier.com"
+                    echo.Red "local compressor failed, now try to compress with javascript-/cssminifier.com"
                     curl -X POST -s --data-urlencode "input@$filename.$filetype" ${urls[$filetype]} > $filename\.min.$filetype
                 fi
             fi
