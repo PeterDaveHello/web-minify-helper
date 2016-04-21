@@ -10,10 +10,22 @@ else
     LS='ls -l --time-style +%Y%m%d%H%M%S'
 fi
 
+#determinate path to compress and generate map or not
 if [ -z "$1" ]; then
     TARGET='.'
+    NP=false
 else
-    TARGET=$1
+    if [ "$1" = "--no-map" ]; then
+        TARGET='.'
+        NP=true
+    else
+        TARGET=$1
+        if [ ! -z "$2" && "$2" = "--no-map" ]; then
+            NP=true
+        else
+            NP=false
+        fi
+    fi
 fi
 
 types=(js css)
@@ -50,12 +62,19 @@ do
             else
                 do_min=1
             fi
+            MAP_OP=""
             if [ 0 -lt $do_min ]; then
                 echo.Magenta "Compressing $filename.$filetype ..."
                 if [ "$filetype" = "css" ]; then
-                    $MYPATH/node_modules/clean-css/bin/cleancss --compatibility --source-map --s0 -o $filename\.min.$filetype $filename.$filetype
+                    if [ ! "$NP" = "true" ]; then
+                        MAP_OP="--source-map"
+                    fi
+                    $MYPATH/node_modules/clean-css/bin/cleancss --compatibility $MAP_OP --s0 -o $filename\.min.$filetype $filename.$filetype
                 else
-                    $MYPATH/node_modules/uglify-js/bin/uglifyjs --mangle --compress if_return=true --source-map $filename\.min.$filetype\.map -o $filename\.min.$filetype $filename.$filetype
+                    if [ ! "$NP" = "true" ]; then
+                        MAP_OP="--source-map $filename.min.$filetype.map"
+                    fi
+                    $MYPATH/node_modules/uglify-js/bin/uglifyjs --mangle --compress if_return=true $MAP_OP -o $filename\.min.$filetype $filename.$filetype
                 fi
                 if [ ! $? -eq 0 ]; then
                     echo.Red "local compressor failed, now try to compress with javascript-/cssminifier.com"
