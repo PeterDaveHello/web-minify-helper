@@ -44,11 +44,12 @@ do
         continue
     fi
 
+    cd $dir
     for filetype in "${types[@]}"
     do
         echo.Green "Finding $filetype to be compressed under $dir ..."
         #list js/css files exclude already minified files
-        for filename in `ls $dir/*.$filetype 2> /dev/null | sed "s/\.$filetype$//g" | grep -v .min$`
+        for filename in `ls *.$filetype 2> /dev/null | sed "s/\.$filetype$//g" | grep -v .min$`
         do
             do_min=0
             #echek if exist a minified version
@@ -83,6 +84,7 @@ do
             fi
         done
     done
+    cd - &> /dev/null
 done
 
 echo.BoldGreen "All done!"
