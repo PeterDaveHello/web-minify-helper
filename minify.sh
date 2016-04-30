@@ -20,7 +20,7 @@ else
         NP=true
     else
         TARGET=$1
-        if [ ! -z "$2" && "$2" = "--no-map" ]; then
+        if [ ! -z "$2" ] && [ "$2" = "--no-map" ]; then
             NP=true
         else
             NP=false
