@@ -60,7 +60,7 @@ do
                 if [ "$mini_ver_time" -lt "$orig_ver_time" ]; then
                     do_min=1
                 fi
-            elif [ $(wc -l "$filename.$filetype" | awk '{print $1}') -gt 8 ]; then
+            elif [ $(wc -l "$filename.$filetype" | awk '{print $1}') -gt 15 ]; then
                 do_min=1
             fi
             MAP_OP=""
