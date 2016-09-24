@@ -60,7 +60,7 @@ do
                 if [ "$mini_ver_time" -lt "$orig_ver_time" ]; then
                     do_min=1
                 fi
-            elif [ $(wc -l "$filename.$filetype" | awk '{print $1}') -gt 15 ] || [ $(grep '^\ ' "$filename.$filetype"  | wc -l) -gt 5 ]; then
+            elif [ $(wc -l "$filename.$filetype" | awk '{print $1}') -ge 15 ] || [ $(grep -E $'^(\t|\ )' "$filename.$filetype"  | wc -l) -ge 5 ]; then
                 do_min=1
             fi
             MAP_OP=""
