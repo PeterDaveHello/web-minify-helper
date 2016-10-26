@@ -24,7 +24,9 @@ How to use?
 
 ```sh
 $ git clone https://github.com/PeterDaveHello/web-minify-helper.git
-$ cd web-minify-helper && npm install
+$ cd web-minify-helper
+$ git submodule update
+$ npm install
 ```
 
 You go to the target directory you want to minify, run the script(`path_of_script/minify.sh`), or pass the directory's path as a parameter to the script!
