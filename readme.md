@@ -25,7 +25,7 @@ How to use?
 ```sh
 $ git clone https://github.com/PeterDaveHello/web-minify-helper.git
 $ cd web-minify-helper
-$ git submodule update
+$ git submodule update --init
 $ npm install
 ```
 
