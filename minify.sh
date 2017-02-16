@@ -70,7 +70,7 @@ do
                     if [ ! "$NP" = "true" ]; then
                         MAP_OP="--source-map"
                     fi
-                    "$MYPATH/node_modules/clean-css/bin/cleancss" --compatibility $MAP_OP --s0 -o "${filename}.min.$filetype" "$filename.$filetype"
+                    "$MYPATH/node_modules/clean-css-cli/bin/cleancss" --compatibility $MAP_OP --s0 -o "${filename}.min.$filetype" "$filename.$filetype"
                 else
                     if [ ! "$NP" = "true" ]; then
                         MAP_OP="--source-map ${filename}.min.$filetype.map"
