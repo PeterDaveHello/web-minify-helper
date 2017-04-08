@@ -75,7 +75,7 @@ do
                     if [ ! "$NP" = "true" ]; then
                         MAP_OP="--source-map ${filename}.min.$filetype.map"
                     fi
-                    "$MYPATH/node_modules/uglify-js/bin/uglifyjs" --mangle --compress if_return=true $MAP_OP -o "${filename}.min.$filetype" "${filename}.$filetype"
+                    "$MYPATH/node_modules/uglify-js/bin/uglifyjs" --mangle --compress if_return=true $MAP_OP -o "${filename}.min.$filetype" "${filename}.$filetype" || "$MYPATH/node_modules/uglify-js-harmony/bin/uglifyjs" --mangle --compress if_return=true $MAP_OP -o "${filename}.min.$filetype" "${filename}.$filetype"
                 fi
                 if [ ! $? -eq 0 ]; then
                     echo.Red "local compressor failed, now try to compress with javascript-/cssminifier.com"

@@ -4,7 +4,8 @@
   "description": "Help minify web assets",
   "dependencies": {
     "clean-css-cli": "^4.0.7",
-    "uglify-js": "^2.7.5"
+    "uglify-js": "^2.7.5",
+    "uglify-js-harmony": "^2.7.5"
   },
   "repository": {
     "type": "git",
