@@ -3,12 +3,12 @@ MYPATH=$(dirname "$0")
 
 . "$MYPATH/ColorEchoForShell/dist/ColorEcho.bash"
 
-#ls time format depends on OS
-if [ "FreeBSD" = "$(uname)" ] || [ "Darwin"  = "$(uname)" ]; then
-    LS='ls -l -D %Y%m%d%H%M%S'
-else
-    LS='ls -l --time-style +%Y%m%d%H%M%S'
-fi
+function modified {
+    # Take a variable name and a file name, assign the modification timestamp to the variable
+    # This should work cross-platform, as of OSX 10.10.
+    ts=$(date -r $2 +%s)
+    eval "$1='$ts'"
+}
 
 #determinate path to compress and generate map or not
 if [ -z "$1" ]; then
@@ -34,7 +34,7 @@ declare -A urls
 urls[js]="http://javascript-minifier.com/raw"
 urls[css]="http://cssminifier.com/raw"
 
-echo.BoldCyan "Scaning direcotry..."
+echo.BoldCyan "Scanning directory..."
 
 #list all the directories except git directory
 for dir in $(find "$TARGET" -type d | grep -E -v '\.git(\/|$)')
@@ -55,8 +55,10 @@ do
             #check if exist a minified version
             if [ -f "${filename}.min.$filetype" ]; then
                 #already exist a minified version, compare the modify time to decide compressing or not
-                orig_ver_time=$(eval "$LS" "${filename}.$filetype" | awk '{print $6}')
-                mini_ver_time=$(eval "$LS" "${filename}.min.$filetype" | awk '{print $6}')
+                orig_ver_time=''
+                mini_ver_time=''
+                modified orig_ver_time "$filename.$filetype"
+                modified mini_ver_time "$filename.min.$filetype"
                 if [ "$mini_ver_time" -lt "$orig_ver_time" ]; then
                     do_min=1
                 fi
