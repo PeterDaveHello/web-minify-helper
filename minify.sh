@@ -3,13 +3,6 @@ MYPATH=$(dirname "$0")
 
 . "$MYPATH/ColorEchoForShell/dist/ColorEcho.bash"
 
-#ls time format depends on OS
-if [ "FreeBSD" = "$(uname)" ] || [ "Darwin"  = "$(uname)" ]; then
-    LS='ls -l -D %Y%m%d%H%M%S'
-else
-    LS='ls -l --time-style +%Y%m%d%H%M%S'
-fi
-
 #determinate path to compress and generate map or not
 if [ -z "$1" ]; then
     TARGET='.'
@@ -55,9 +48,7 @@ do
             #check if exist a minified version
             if [ -f "${filename}.min.$filetype" ]; then
                 #already exist a minified version, compare the modify time to decide compressing or not
-                orig_ver_time=$(eval "$LS" "${filename}.$filetype" | awk '{print $6}')
-                mini_ver_time=$(eval "$LS" "${filename}.min.$filetype" | awk '{print $6}')
-                if [ "$mini_ver_time" -lt "$orig_ver_time" ]; then
+                if [ "${filename}.min.${filetype}" -ot "${filename}.${filetype}" ]; then
                     do_min=1
                 fi
             elif [ $(wc -l "$filename.$filetype" | awk '{print $1}') -ge 15 ] || [ $(grep -E $'^(\t|\ )' "$filename.$filetype"  | wc -l) -ge 5 ]; then
