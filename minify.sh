@@ -57,15 +57,12 @@ do
             MAP_OP=""
             if [ 0 -lt $do_min ]; then
                 echo.Magenta "Compressing $filename.$filetype ..."
+                if [ ! "$NP" = "true" ]; then
+                    MAP_OP="--source-map"
+                fi
                 if [ "$filetype" = "css" ]; then
-                    if [ ! "$NP" = "true" ]; then
-                        MAP_OP="--source-map"
-                    fi
                     "$MYPATH/node_modules/clean-css-cli/bin/cleancss" --compatibility $MAP_OP --s0 -o "${filename}.min.$filetype" "$filename.$filetype"
                 else
-                    if [ ! "$NP" = "true" ]; then
-                        MAP_OP="--source-map ${filename}.min.$filetype.map"
-                    fi
                     "$MYPATH/node_modules/uglify-js/bin/uglifyjs" --mangle --compress if_return=true $MAP_OP -o "${filename}.min.$filetype" "${filename}.$filetype" || "$MYPATH/node_modules/uglify-js-harmony/bin/uglifyjs" --mangle --compress if_return=true $MAP_OP -o "${filename}.min.$filetype" "${filename}.$filetype"
                 fi
                 if [ ! $? -eq 0 ]; then
