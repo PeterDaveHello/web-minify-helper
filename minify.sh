@@ -53,6 +53,10 @@ do
                 fi
             elif [ $(wc -l "$filename.$filetype" | awk '{print $1}') -ge 15 ] || [ $(grep -E $'^(\t|\ )' "$filename.$filetype"  | wc -l) -ge 5 ]; then
                 do_min=1
+            else
+                echo.Yellow "$filename.$filetype is small enough, not be minified:"
+                echo.Yellow "It doesn't have more than 15 lines."
+                echo.Yellow "Or it doesn't have more than 5 lines with tab(s) and blank(s) in the head of sentences."
             fi
             MAP_OP=""
             if [ 0 -lt $do_min ]; then
