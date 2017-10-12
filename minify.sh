@@ -24,8 +24,8 @@ fi
 types=(js css)
 #For storing the URL of API to minify the files
 declare -A urls
-urls[js]="http://javascript-minifier.com/raw"
-urls[css]="http://cssminifier.com/raw"
+urls[js]="https://javascript-minifier.com/raw"
+urls[css]="https://cssminifier.com/raw"
 
 echo.BoldCyan "Scaning direcotry..."
 
