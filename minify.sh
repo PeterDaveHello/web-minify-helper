@@ -24,8 +24,8 @@ fi
 types=(js css)
 #For storing the URL of API to minify the files
 declare -A urls
-urls[js]="http://javascript-minifier.com/raw"
-urls[css]="http://cssminifier.com/raw"
+urls[js]="https://javascript-minifier.com/raw"
+urls[css]="https://cssminifier.com/raw"
 
 echo.BoldCyan "Scaning direcotry..."
 
@@ -67,7 +67,7 @@ do
                 fi
                 if [ ! $? -eq 0 ]; then
                     echo.Red "local compressor failed, now try to compress with javascript-/cssminifier.com"
-                    curl -X POST -s --data-urlencode "input@${filename}.$filetype" ${urls[$filetype]} > "${filename}.min.$filetype"
+                    curl -X POST -L --max-redirs 0 -sS -f -o "${filename}.min.$filetype" --data-urlencode "input@${filename}.$filetype" ${urls[$filetype]}
                 fi
             fi
         done
