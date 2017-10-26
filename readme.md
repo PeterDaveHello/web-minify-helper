@@ -1,6 +1,8 @@
 Web minify helper!
 ========
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/PeterDaveHello/web-minify-helper.svg)](https://greenkeeper.io/)
+
 [![Gitter chat](https://badges.gitter.im/PeterDaveHello/web-minify-helper.svg)](https://gitter.im/PeterDaveHello/web-minify-helper)
 [![dependencies Status](https://david-dm.org/PeterDaveHello/web-minify-helper/status.svg)](https://david-dm.org/PeterDaveHello/web-minify-helper)
 
