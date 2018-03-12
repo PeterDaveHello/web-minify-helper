@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "description": "Help minify web assets",
   "dependencies": {
-    "clean-css-cli": "^4.0.7",
-    "uglify-es": "^3.3.5",
-    "uglify-js": "^3.3.5"
+    "clean-css-cli": "^4.1.11",
+    "uglify-es": "^3.3.10",
+    "uglify-js": "^3.3.14"
   },
   "repository": {
     "type": "git",
