@@ -42,7 +42,7 @@ do
     do
         echo.Green "Finding $filetype to be compressed under $dir ..."
         #list js/css files exclude already minified files
-        for filename in $(ls *.$filetype 2> /dev/null | sed "s/\.$filetype$//g" | grep -v '\.min$')
+        for filename in $(ls *."$filetype" 2> /dev/null | sed "s/\.$filetype$//g" | grep -v '\.min$')
         do
             do_min=0
             #check if exist a minified version
@@ -51,7 +51,7 @@ do
                 if [ "${filename}.min.${filetype}" -ot "${filename}.${filetype}" ]; then
                     do_min=1
                 fi
-            elif [ $(wc -l "$filename.$filetype" | awk '{print $1}') -ge 15 ] || [ $(grep -E $'^(\t|\ )' "$filename.$filetype"  | wc -l) -ge 5 ]; then
+            elif [ "$(wc -l "$filename.$filetype" | awk '{print $1}')" -ge 15 ] || [ "$(grep -Ec $'^(\t|\ )' "$filename.$filetype")" -ge 5 ]; then
                 do_min=1
             fi
             MAP_OP=""
