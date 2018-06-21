@@ -6,7 +6,7 @@ Web minify helper!
 
 Let me help you minify css and js files automatically and easily!
 
-This is only a shell script; it depends on bash shell, grep, wc, curl and nodejs/npm.
+This is only a shell script; it depends on bash shell, grep, curl and nodejs/npm.
 
 It is based on [clean-css](https://github.com/jakubpawlowicz/clean-css), [uglify-js](https://github.com/mishoo/UglifyJS2) and [javascript-minifier.com](https://javascript-minifier.com)/[cssminifier.com](https://cssminifier.com).
 
@@ -16,7 +16,6 @@ Requirements
 ========
 - Bash shell
 - grep
-- wc (word count)
 - curl
 - Node.js >= (4.0)
 

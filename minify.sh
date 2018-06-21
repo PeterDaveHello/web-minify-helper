@@ -51,7 +51,7 @@ do
                 if [ "${filename}.min.${filetype}" -ot "${filename}.${filetype}" ]; then
                     do_min=1
                 fi
-            elif [ "$(wc -l "$filename.$filetype" | awk '{print $1}')" -ge 15 ] || [ "$(grep -Ec $'^(\t|\ )' "$filename.$filetype")" -ge 5 ]; then
+            elif [ "$(awk 'END{print NR}' "$filename.$filetype")" -ge 15 ] || [ "$(grep -Ec $'^(\t|\ )' "$filename.$filetype")" -ge 5 ]; then
                 do_min=1
             fi
             MAP_OP=""
