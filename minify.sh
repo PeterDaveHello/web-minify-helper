@@ -30,20 +30,17 @@ urls[css]="https://cssminifier.com/raw"
 echo.BoldCyan "Scaning direcotry..."
 
 #list all the directories except git directory
-for dir in $(find "$TARGET" -type d | grep -E -v '\.git(\/|$)')
-do
+for dir in $(find "$TARGET" -type d | grep -E -v '\.git(\/|$)'); do
     if [ ! -w "$dir" ]; then
         echo.BoldRed "$dir is not writable, ignore it."
         continue
     fi
     (
     cd "$dir" || exit
-    for filetype in "${types[@]}"
-    do
+    for filetype in "${types[@]}"; do
         echo.Green "Finding $filetype to be compressed under $dir ..."
         #list js/css files exclude already minified files
-        for filename in $(ls *."$filetype" 2> /dev/null | sed "s/\.$filetype$//g" | grep -v '\.min$')
-        do
+        for filename in $(ls *."$filetype" 2> /dev/null | sed "s/\.$filetype$//g" | grep -v '\.min$'); do
             do_min=0
             #check if exist a minified version
             if [ -f "${filename}.min.$filetype" ]; then
