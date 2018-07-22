@@ -1,5 +1,4 @@
-Web minify helper!
-========
+# Web minify helper!
 
 [![Gitter chat](https://badges.gitter.im/PeterDaveHello/web-minify-helper.svg)](https://gitter.im/PeterDaveHello/web-minify-helper)
 [![dependencies Status](https://david-dm.org/PeterDaveHello/web-minify-helper/status.svg)](https://david-dm.org/PeterDaveHello/web-minify-helper)
@@ -12,15 +11,14 @@ It is based on [clean-css](https://github.com/jakubpawlowicz/clean-css), [uglify
 
 Feel free to contribute to the project if you want!
 
-Requirements
-========
+## Requirements
+
 - Bash shell
 - grep
 - curl
 - Node.js >= (4.0)
 
-How to use?
-========
+## How to use?
 
 ```sh
 $ git clone --recursive https://github.com/PeterDaveHello/web-minify-helper.git
@@ -32,8 +30,8 @@ First go to the target directory you want to minify, then run the script(`path_o
 
 You may even place the script file (or make a link to it) under the `$HOME/bin` directory, allowing you to conveniently run this script from any directory!
 
-Explanation
-========
+## Explanation
+
 The script will scan all the directories under the current working directory, except path with '.git'.
 
 Then, it will check all the js & css files to see if they already have a minified version (currently, it recognizes it by looking for a `.min` in the filename, before the file extension).
