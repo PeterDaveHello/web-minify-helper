@@ -50,6 +50,10 @@ for dir in $(find "$TARGET" -type d | grep -E -v '\.git(\/|$)'); do
                 fi
             elif [ "$(awk 'END{print NR}' "$filename.$filetype")" -ge 15 ] || [ "$(grep -Ec $'^(\t|\ )' "$filename.$filetype")" -ge 5 ]; then
                 do_min=1
+            else
+                echo.Yellow "$filename.$filetype is small enough, not be minified:"
+                echo.Yellow "It doesn't have more than 15 lines."
+                echo.Yellow "Or it doesn't have more than 5 lines with tab(s) and blank(s) in the head of sentences."
             fi
             MAP_OP=""
             if [ 0 -lt $do_min ]; then
