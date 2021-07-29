@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Help minify web assets",
   "dependencies": {
-    "clean-css-cli": "^4.1.11",
+    "clean-css-cli": "^5.3.2",
     "uglify-es": "^3.3.10",
     "uglify-js": "^3.4.6"
   },
